@@ -1,41 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:sail_app/constant/app_colors.dart';
-import 'package:sail_app/entity/plan_entity.dart';
-import 'package:sail_app/models/app_model.dart';
-import 'package:sail_app/models/user_model.dart';
-import 'package:sail_app/models/user_subscribe_model.dart';
-import 'package:sail_app/service/plan_service.dart';
-import 'package:sail_app/widgets/connection_stats.dart';
-import 'package:sail_app/widgets/logo_bar.dart';
-import 'package:sail_app/widgets/my_subscribe.dart';
-import 'package:sail_app/widgets/plan_list.dart';
-import 'package:sail_app/widgets/select_location.dart';
+import 'package:sail/constant/app_colors.dart';
+import 'package:sail/models/app_model.dart';
+import 'package:sail/models/plan_model.dart';
+import 'package:sail/models/user_model.dart';
+import 'package:sail/models/user_subscribe_model.dart';
+import 'package:sail/widgets/connection_stats.dart';
+import 'package:sail/widgets/logo_bar.dart';
+import 'package:sail/widgets/my_subscribe.dart';
+import 'package:sail/widgets/plan_list.dart';
+import 'package:sail/widgets/select_location.dart';
 
 class HomeWidget extends StatefulWidget {
-  const HomeWidget({Key key}) : super(key: key);
+  const HomeWidget({Key? key}) : super(key: key);
 
   @override
   HomeWidgetState createState() => HomeWidgetState();
 }
 
 class HomeWidgetState extends State<HomeWidget> with AutomaticKeepAliveClientMixin {
-  AppModel _appModel;
-  UserModel _userModel;
-  UserSubscribeModel _userSubscribeModel;
-  List<PlanEntity> _planEntityList = [];
-
-  @override
-  void initState() {
-    super.initState();
-
-    PlanService().plan().then((planEntityList) {
-      setState(() {
-        _planEntityList = planEntityList;
-      });
-    });
-  }
+  late AppModel _appModel;
+  late UserModel _userModel;
+  late UserSubscribeModel _userSubscribeModel;
+  late PlanModel _planModel;
 
   @override
   bool get wantKeepAlive => true;
@@ -46,6 +34,7 @@ class HomeWidgetState extends State<HomeWidget> with AutomaticKeepAliveClientMix
     _appModel = Provider.of<AppModel>(context);
     _userModel = Provider.of<UserModel>(context);
     _userSubscribeModel = Provider.of<UserSubscribeModel>(context);
+    _planModel = Provider.of<PlanModel>(context);
   }
 
   @override
@@ -77,8 +66,8 @@ class HomeWidgetState extends State<HomeWidget> with AutomaticKeepAliveClientMix
               padding: EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(30)),
               child: PlanList(
                 isOn: _appModel.isOn,
-                boughtPlanId: _userSubscribeModel?.userSubscribeEntity?.planId ?? 0,
-                plans: _planEntityList,
+                userSubscribeEntity: _userSubscribeModel.userSubscribeEntity,
+                plans: _planModel.planEntityList,
               ),
             ),
 

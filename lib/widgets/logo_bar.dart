@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:sail_app/constant/app_colors.dart';
-import 'package:sail_app/models/user_model.dart';
-import 'package:sail_app/models/user_subscribe_model.dart';
-import 'package:sail_app/utils/navigator_util.dart';
+import 'package:sail/constant/app_colors.dart';
+import 'package:sail/models/app_model.dart';
+import 'package:sail/models/user_model.dart';
+import 'package:sail/models/user_subscribe_model.dart';
+import 'package:sail/utils/navigator_util.dart';
 
 class LogoBar extends StatelessWidget {
   const LogoBar({
-    Key key,
-    @required this.isOn,
+    Key? key,
+    required this.isOn,
   }) : super(key: key);
 
   final bool isOn;
 
   @override
   Widget build(BuildContext context) {
+    AppModel appModel = Provider.of<AppModel>(context);
     UserModel userModel = Provider.of<UserModel>(context);
     UserSubscribeModel userSubscribeModel = Provider.of<UserSubscribeModel>(context);
 
@@ -47,7 +49,7 @@ class LogoBar extends StatelessWidget {
                     child: Text(
                       "客服",
                       style:
-                      TextStyle(fontSize: ScreenUtil().setSp(32), color: Colors.white, fontWeight: FontWeight.w500),
+                      TextStyle(fontSize: ScreenUtil().setSp(36), color: Colors.white, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -58,14 +60,14 @@ class LogoBar extends StatelessWidget {
                 borderRadius: BorderRadius.circular(ScreenUtil().setWidth(30)),
                 child: InkWell(
                   borderRadius: BorderRadius.circular(ScreenUtil().setWidth(30)),
-                  onTap: () {},
+                  onTap: () => appModel.jumpToPage(3),
                   child: Container(
                     padding: EdgeInsets.symmetric(
                         vertical: ScreenUtil().setWidth(10), horizontal: ScreenUtil().setWidth(30)),
                     child: Text(
                       userSubscribeModel?.userSubscribeEntity?.email ?? "欢迎光临",
                       style:
-                          TextStyle(fontSize: ScreenUtil().setSp(32), color: Colors.white, fontWeight: FontWeight.w500),
+                          TextStyle(fontSize: ScreenUtil().setSp(36), color: Colors.white, fontWeight: FontWeight.w500),
                     ),
                   ),
                 ),
@@ -87,7 +89,7 @@ class LogoBar extends StatelessWidget {
                           child: Text(
                             '退出',
                             style: TextStyle(
-                                fontSize: ScreenUtil().setSp(32), color: Colors.white, fontWeight: FontWeight.w500),
+                                fontSize: ScreenUtil().setSp(36), color: Colors.white, fontWeight: FontWeight.w500),
                           ),
                         ),
                       ),

@@ -9,7 +9,7 @@ English | [简体中文](./README_zh-CN.md)
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white) 
 
-[![Flutter](https://github.com/losgif/sail/actions/workflows/flutter.yml/badge.svg)](https://github.com/losgif/sail/actions/workflows/flutter.yml)
+[![Flutter](https://github.com/sail-tunnel/sail/actions/workflows/flutter.yml/badge.svg)](https://github.com/sail-tunnel/sail/actions/workflows/flutter.yml)
 
 A flutter application for [V2Board](https://github.com/v2board/v2board) ~~and [SSPanel-Uim](https://github.com/Anankke/SSPanel-Uim)~~
 
@@ -28,17 +28,16 @@ recreation of [Mohammad Reza Farahzad's design](https://dribbble.com/shots/14028
 ## Resources
 - [Mohammad Reza Farahzad's design](https://dribbble.com/shots/14028358-VPN-App-Ui-Design?utm_source=Clipboard_Shot&utm_campaign=mrfarahzad&utm_content=VPN%20App%20Ui%20Design&utm_medium=Social_Share)
 - [flat flags](https://github.com/wobblecode/flat-flags)
-- [flutter icons](https://pub.dev/packages/flutter_icons)
 
 ## Contact me
-[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/losgif)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:losgif@gmail.com)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/sail-tunnel)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sail-tunnel@gmail.com)
 
 ## TODOS:
- - [ ] Support android devices.
+ - [x] Support android devices.
  - [ ] Dart ffi with iOS and android to control vpn.
- - [ ] Order page
- - [ ] My settings page
+ - [x] Order page
+ - [x] My settings page
  - [x] Servers list page support ping action.
  - [ ] Refactor colors by material theme.
 

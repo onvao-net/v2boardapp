@@ -1,4 +1,4 @@
-name: sail_app
+name: sail
 description: a proxy client application.
 
 # The following line prevents the package from being accidentally published to
@@ -18,14 +18,13 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.2+2
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.18.5 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_icons: ^1.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,7 +39,7 @@ dependencies:
   flutter_login: ^3.2.0
   flutter_easyrefresh: ^2.1.8
   intl: ^0.17.0
-  flutter_tags: "^0.4.9+1"
+  flutter_tags: ^1.0.0-nullsafety.1
   path_provider: ^2.0.10
   crisp: ^0.3.1
   modal_bottom_sheet: ^2.0.1
@@ -58,6 +57,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+
+  generate: true
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

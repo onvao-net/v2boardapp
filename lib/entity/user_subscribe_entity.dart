@@ -7,16 +7,16 @@ import 'dart:convert';
 
 class UserSubscribeEntity {
   UserSubscribeEntity({
-    @required this.planId,
-    @required this.token,
-    @required this.expiredAt,
-    @required this.u,
-    @required this.d,
-    @required this.transferEnable,
-    @required this.email,
-    @required this.plan,
-    @required this.subscribeUrl,
-    @required this.resetDay,
+    required this.planId,
+    required this.token,
+    required this.expiredAt,
+    required this.u,
+    required this.d,
+    required this.transferEnable,
+    required this.email,
+    required this.plan,
+    required this.subscribeUrl,
+    required this.resetDay,
   });
 
   final int planId;
@@ -28,7 +28,7 @@ class UserSubscribeEntity {
   final String email;
   final Plan plan;
   final String subscribeUrl;
-  final int resetDay;
+  final int? resetDay;
 
   factory UserSubscribeEntity.fromJson(String str) => UserSubscribeEntity.fromMap(json.decode(str));
 
@@ -63,25 +63,25 @@ class UserSubscribeEntity {
 
 class Plan {
   Plan({
-    @required this.id,
-    @required this.groupId,
-    @required this.transferEnable,
-    @required this.name,
-    @required this.show,
-    @required this.sort,
-    @required this.renew,
-    @required this.content,
-    @required this.monthPrice,
-    @required this.quarterPrice,
-    @required this.halfYearPrice,
-    @required this.yearPrice,
-    @required this.twoYearPrice,
-    @required this.threeYearPrice,
-    @required this.onetimePrice,
-    @required this.resetPrice,
-    @required this.resetTrafficMethod,
-    @required this.createdAt,
-    @required this.updatedAt,
+    required this.id,
+    required this.groupId,
+    required this.transferEnable,
+    required this.name,
+    required this.show,
+    required this.sort,
+    required this.renew,
+    required this.content,
+    required this.monthPrice,
+    required this.quarterPrice,
+    required this.halfYearPrice,
+    required this.yearPrice,
+    required this.twoYearPrice,
+    required this.threeYearPrice,
+    required this.onetimePrice,
+    required this.resetPrice,
+    required this.resetTrafficMethod,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   final int id;
@@ -91,18 +91,18 @@ class Plan {
   final int show;
   final int sort;
   final int renew;
-  final String content;
-  final int monthPrice;
-  final int quarterPrice;
-  final int halfYearPrice;
-  final int yearPrice;
-  final dynamic twoYearPrice;
-  final dynamic threeYearPrice;
-  final dynamic onetimePrice;
-  final int resetPrice;
-  final int resetTrafficMethod;
-  final int createdAt;
-  final int updatedAt;
+  final String? content;
+  final int? monthPrice;
+  final int? quarterPrice;
+  final int? halfYearPrice;
+  final int? yearPrice;
+  final int? twoYearPrice;
+  final int? threeYearPrice;
+  final int? onetimePrice;
+  final int? resetPrice;
+  final int? resetTrafficMethod;
+  final int? createdAt;
+  final int? updatedAt;
 
   factory Plan.fromJson(String str) => Plan.fromMap(json.decode(str));
 

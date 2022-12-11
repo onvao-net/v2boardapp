@@ -1,5 +1,7 @@
 import UIKit
 import Flutter
+import NetworkExtension
+import os
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
@@ -10,35 +12,82 @@ import Flutter
     GeneratedPluginRegistrant.register(with: self)
 
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController;
-    let vpnManagerChannel = FlutterMethodChannel.init(name: "com.losgif.sail/vpn_manager",
+    let vpnManagerChannel = FlutterMethodChannel.init(name: "com.sail_tunnel.sail/vpn_manager",
                                                    binaryMessenger: controller.binaryMessenger);
     let manager = VPNManager.shared()
 
     vpnManagerChannel.setMethodCallHandler({
-        (call: FlutterMethodCall, result: FlutterResult) -> Void in
-        guard call.method == "enableVPNManager" else {
-          result(FlutterMethodNotImplemented)
-          return
-        }
+        (call: FlutterMethodCall, result: @escaping FlutterResult) -> Void in
 
-        manager.loadVPNPreference() { error in
-            guard error == nil else {
-                fatalError("load VPN preference failed: \(error.debugDescription)")
-            }
-
-            manager.enableVPNManager() { error in
+        switch call.method {
+        case "toggle":
+            manager.loadVPNPreference() { error in
                 guard error == nil else {
-                    fatalError("enable VPN failed: \(error.debugDescription)")
+                    fatalError("load VPN preference failed: \(error.debugDescription)")
                 }
-                manager.toggleVPNConnection() { error in
+
+                manager.enableVPNManager() { error in
                     guard error == nil else {
-                        fatalError("toggle VPN connection failed: \(error.debugDescription)")
+                        fatalError("enable VPN failed: \(error.debugDescription)")
+                    }
+                    manager.toggleVPNConnection() { error in
+                        guard error == nil else {
+                            fatalError("toggle VPN connection failed: \(error.debugDescription)")
+                        }
                     }
                 }
             }
-        }
 
-        result(true)
+            result(true)
+            break
+        case "getStatus":
+            if (manager.getStatus() != NEVPNStatus.connected) {
+                result(false)
+            } else {
+                result(true)
+            }
+            break
+        case "getTunnelLog":
+            let fm = FileManager.default
+
+            guard let conf = fm.leafLogFile?.contents else {
+                fatalError("get leaf log file contents fail")
+            }
+            
+            result(conf)
+            break
+        case "getTunnelConfiguration":
+            LeafAdapater.shared().getRuntimeConfiguration { conf in
+                guard conf != nil else {
+                    fatalError("get runtime VPN configuratioin failed")
+                }
+                
+                result(conf)
+            }
+            break
+        case "setTunnelConfiguration":
+            guard let conf = call.arguments as? String else {
+                fatalError("call arguments is empty")
+            }
+            LeafAdapater.shared().setRuntimeConfiguration(conf: conf) { error in
+                guard error == nil else {
+                    fatalError("set runtime configuration failed: \(error.debugDescription)")
+                }
+            }
+        case "update":
+            guard let conf = call.arguments as? String else {
+                fatalError("call arguments is empty")
+            }
+            
+            LeafAdapater.shared().update(conf: conf) { error in
+                guard error == nil else {
+                    fatalError("update tunnel failed: \(error.debugDescription)")
+                }
+            }
+        default:
+            result(FlutterMethodNotImplemented)
+            return
+        }
       })
 
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)

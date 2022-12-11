@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:sail_app/constant/app_strings.dart';
-import 'package:sail_app/router/application.dart';
-import 'package:sail_app/router/routers.dart';
-import 'package:sail_app/utils/common_util.dart';
-import 'package:sail_app/utils/shared_preferences_util.dart';
+import 'package:sail/constant/app_strings.dart';
+import 'package:sail/router/application.dart';
+import 'package:sail/router/routers.dart';
+import 'package:sail/utils/common_util.dart';
+import 'package:sail/utils/shared_preferences_util.dart';
 
 class HttpUtil {
   // 工厂模式
-  static HttpUtil get instance => _getInstance();
-  static HttpUtil _httpUtil;
-  Dio dio;
+  static HttpUtil? get instance => _getInstance();
+  static HttpUtil? _httpUtil;
+  late Dio dio;
 
-  static HttpUtil _getInstance() {
+  static HttpUtil? _getInstance() {
     _httpUtil ??= HttpUtil();
     return _httpUtil;
   }
@@ -29,7 +29,7 @@ class HttpUtil {
       print("params=${options.data}");
 
       //如果token存在在请求参数加上token
-      await SharedPreferencesUtil.getInstance().getString(AppStrings.token).then((token) {
+      await SharedPreferencesUtil.getInstance()?.getString(AppStrings.token).then((token) {
         if (token != null) {
           options.queryParameters[AppStrings.token] = token;
           print("token=$token");
@@ -37,7 +37,7 @@ class HttpUtil {
       });
 
       //如果auth_data存在在请求参数加上auth_data
-      await SharedPreferencesUtil.getInstance().getString(AppStrings.authData).then((authData) {
+      await SharedPreferencesUtil.getInstance()?.getString(AppStrings.authData).then((authData) {
         if (authData != null) {
           options.queryParameters[AppStrings.authData] = authData;
           print("authData=$authData");
@@ -48,11 +48,10 @@ class HttpUtil {
     }, onResponse: (response, handler) {
       print("========================请求数据===================");
       print("code=${response.statusCode}");
-      print("response=${response.data}");
 
-      if (response.statusCode < 200 || response.statusCode >= 300) {
+      if (response.statusCode! < 200 || response.statusCode! >= 300) {
         if (response.statusCode == 403) {
-          Application.navigatorKey.currentState.pushNamed(Routers.login);
+          Application.navigatorKey.currentState?.pushNamed(Routers.login);
         }
 
         return handler
@@ -64,14 +63,13 @@ class HttpUtil {
       print("========================请求错误===================");
       print("message =${error.message}");
       print("code=${error.response?.statusCode}");
-      print("response=${error.response?.data}");
 
       return handler.next(error);
     }));
   }
 
   //get请求
-  Future get(String url, {Map<String, dynamic> parameters, Options options}) async {
+  Future get(String url, {Map<String, dynamic>? parameters, Options? options}) async {
     Response response;
     if (parameters != null && options != null) {
       response = await dio.get(url, queryParameters: parameters, options: options);
@@ -86,7 +84,7 @@ class HttpUtil {
   }
 
   //post请求
-  Future post(String url, {Map<String, dynamic> parameters, Options options}) async {
+  Future post(String url, {Map<String, dynamic>? parameters, Options? options}) async {
     Response response;
     if (parameters != null && options != null) {
       response = await dio.post(url, data: parameters, options: options);
@@ -101,7 +99,7 @@ class HttpUtil {
   }
 
   //put请求
-  Future put(String url, {Map<String, dynamic> parameters, Options options}) async {
+  Future put(String url, {Map<String, dynamic>? parameters, Options? options}) async {
     Response response;
     if (parameters != null && options != null) {
       response = await dio.put(url, data: parameters, options: options);
@@ -116,7 +114,7 @@ class HttpUtil {
   }
 
   //delete请求
-  Future delete(String url, {Map<String, dynamic> parameters, Options options}) async {
+  Future delete(String url, {Map<String, dynamic>? parameters, Options? options}) async {
     Response response;
     if (parameters != null && options != null) {
       response = await dio.delete(url, data: parameters, options: options);

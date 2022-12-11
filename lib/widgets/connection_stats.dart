@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:sail_app/constant/app_colors.dart';
-import 'package:sail_app/models/user_model.dart';
-import 'package:sail_app/utils/navigator_util.dart';
+import 'package:sail/constant/app_colors.dart';
+import 'package:sail/models/user_model.dart';
+import 'package:sail/utils/navigator_util.dart';
 
 class ConnectionStats extends StatefulWidget {
-  const ConnectionStats({Key key}) : super(key: key);
+  const ConnectionStats({Key? key}) : super(key: key);
 
   @override
   ConnectionStatsState createState() => ConnectionStatsState();
 }
 
 class ConnectionStatsState extends State<ConnectionStats> {
-  UserModel _userModel;
+  late UserModel _userModel;
 
   @override
   void didChangeDependencies() {
@@ -39,7 +38,7 @@ class ConnectionStatsState extends State<ConnectionStats> {
               onPressed: () => _userModel.checkHasLogin(context, () => NavigatorUtil.goServerList(context)),
               child:
               Row(mainAxisAlignment: MainAxisAlignment.center, children: const [
-                Icon(MaterialCommunityIcons.map_marker,
+                Icon(Icons.map,
                     color: AppColors.grayColor, size: 20),
                 Text("其他节点",
                     style:

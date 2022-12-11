@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:sail_app/constant/app_colors.dart';
-import 'package:sail_app/models/server_model.dart';
-import 'package:sail_app/models/user_model.dart';
-import 'package:sail_app/utils/navigator_util.dart';
+import 'package:sail/constant/app_colors.dart';
+import 'package:sail/models/server_model.dart';
+import 'package:sail/models/user_model.dart';
+import 'package:sail/utils/navigator_util.dart';
 
 class SelectLocation extends StatefulWidget {
   const SelectLocation({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -17,8 +16,8 @@ class SelectLocation extends StatefulWidget {
 }
 
 class SelectLocationState extends State<SelectLocation> {
-  ServerModel _serverModel;
-  UserModel _userModel;
+  late ServerModel _serverModel;
+  late UserModel _userModel;
 
   @override
   void didChangeDependencies() {
@@ -54,7 +53,7 @@ class SelectLocationState extends State<SelectLocation> {
             padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 25),
             child: Row(
               children: [
-                const Icon(MaterialCommunityIcons.server_network),
+                const Icon(Icons.sailing),
                 Padding(padding: EdgeInsets.only(left: ScreenUtil().setWidth(10))),
                 Text(
                   _serverModel.selectServerEntity?.name ?? "选择连接节点",

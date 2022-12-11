@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sail_app/constant/app_colors.dart';
-import 'package:sail_app/models/app_model.dart';
+import 'package:sail/constant/app_colors.dart';
+import 'package:sail/models/app_model.dart';
 
 class SailAppBar extends AppBar {
-  SailAppBar({Key key, @required this.appTitle})
-      : assert(appTitle != null),
-        super(key: key);
+  SailAppBar({Key? key, required this.appTitle})
+      : super(key: key);
 
   final String appTitle;
 
@@ -15,7 +14,7 @@ class SailAppBar extends AppBar {
 }
 
 class SailAppBarState extends State<SailAppBar> {
-  AppModel _appModel;
+  late AppModel _appModel;
 
   @override
   void didChangeDependencies() {
@@ -28,11 +27,10 @@ class SailAppBarState extends State<SailAppBar> {
     return AppBar(
         title: Text(
           widget.appTitle,
-          style: const TextStyle(color: Colors.white),
+          style: TextStyle(color: _appModel.isOn ? Colors.black : Colors.white, fontWeight: FontWeight.w900),
         ),
-        backgroundColor: _appModel.isOn ? AppColors.grayColor : AppColors.themeColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomRight: Radius.circular(25), bottomLeft: Radius.circular(25)),
-        ));
+        elevation: 0,
+        backgroundColor: _appModel.isOn ? AppColors.yellowColor : AppColors.grayColor
+);
   }
 }

@@ -9,7 +9,7 @@
 ![iOS](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 
-[![Flutter](https://github.com/losgif/sail/actions/workflows/flutter.yml/badge.svg)](https://github.com/losgif/sail/actions/workflows/flutter.yml)
+[![Flutter](https://github.com/sail-tunnel/sail/actions/workflows/flutter.yml/badge.svg)](https://github.com/sail-tunnel/sail/actions/workflows/flutter.yml)
 
 使用 [Flutter](https://github.com/flutter/flutter) 为 [V2Board](https://github.com/v2board/v2board) ~~及 [SSPanel-Uim](https://github.com/Anankke/SSPanel-Uim) 构建的应用~~  
 
@@ -28,17 +28,16 @@
 ## 资源
 - [Mohammad Reza Farahzad 的设计](https://dribbble.com/shots/14028358-VPN-App-Ui-Design?utm_source=Clipboard_Shot&utm_campaign=mrfarahzad&utm_content=VPN%20App%20Ui%20Design&utm_medium=Social_Share)
 - [flat flags](https://github.com/wobblecode/flat-flags)
-- [flutter icons](https://pub.dev/packages/flutter_icons)
 
 ## 联络我
-[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/losgif)
-[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:losgif@gmail.com)
+[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/sail-tunnel)
+[![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sail-tunnel@gmail.com)
 
 ## 待办事项：
-- [ ] 支持安卓设备。
+- [x] 支持安卓设备。
 - [ ] Dart ffi 与 iOS 和 android 来控制 vpn。
-- [ ] 订单页面
-- [ ] 我的设置页面
+- [x] 订单页面
+- [x] 我的设置页面
 - [x] 服务器列表页面支持 ping 操作。
 - [ ] 按Material主题重构颜色。
 
